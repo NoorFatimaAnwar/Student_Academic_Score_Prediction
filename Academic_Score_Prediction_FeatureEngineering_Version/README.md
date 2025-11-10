@@ -1,4 +1,4 @@
-# 🧠 Student Academic Score Prediction → Advanced Statistical Edition
+# 🧠 Student Academic Score Prediction → Advanced Feature Engineering Edition
 
 ## 📘 Project Overview
 
