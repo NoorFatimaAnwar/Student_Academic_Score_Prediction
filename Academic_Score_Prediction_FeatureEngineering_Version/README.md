@@ -1,7 +1,21 @@
-# 🧠 Project Title: Influence of Lifestyle Factors on Academic Performance
+🧠 Student Academic Score Prediction → Advanced Statistical Edition
+📘 Project Overview
 
-## 1. Problem Statement
-Analyze how different lifestyle factors like **sleep, exercise, social media use, and study habits** — influence students’ academic performance and identify which factors have the most significant impact on academic outcomes.
+This project investigates how lifestyle factors — including sleep, exercise, social media use, stress level, and study habits — influence students’ academic performance. Using a dataset of 5,000 students, the study applies advanced data preprocessing, outlier treatment, encoding, and feature scaling techniques to ensure analytical accuracy and reliability.
+
+Unlike the previous version, this updated edition focuses on feature engineering and model enhancement, introducing:
+
+Hybrid outlier detection (IQR + Z-Score)
+
+Multi-strategy missing value imputation (Iterative, KNN, Random Sampling)
+
+Label and Ordinal Encoding for categorical variables
+
+Standardization using StandardScaler to optimize feature comparability
+
+These improvements not only strengthened the dataset’s statistical validity but also increased the Linear Regression model’s R² score from 0.66 to 0.73, reflecting better predictive accuracy and feature consistency.
+
+The project combines statistical validation with machine learning preprocessing to derive meaningful insights and also confirming that study habits, attendance, and stress management are the most influential factors in predicting academic success.
 
 ---
 
