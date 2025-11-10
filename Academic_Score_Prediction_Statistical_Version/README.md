@@ -1,7 +1,7 @@
 # 🧠 Student Academic Score Prediction -> Statistical Edition
 
 ## 📘 Project Overview
-This project explores how different lifestyle factors — including **sleep**, **exercise**, **social media use**, and **study habits** — influence students’ **academic performance**.  
+This project explores how lifestyle factors such as sleep, exercise, social media use, and study habits influence students’ academic performance. Using a synthetic dataset of 5,000 students generated with ChatGPT, the analysis includes data cleaning, missing value handling, outlier detection, and Exploratory Data Analysis (EDA) to uncover relationships between lifestyle behaviors and academic outcomes. The dataset was intentionally designed to contain imperfections similar to real-world data, allowing practice in realistic data preprocessing and analysis workflows. 
 The updated version enhances the analysis by integrating **statistical testing methods** and **distribution checks** to validate findings scientifically.
 
 ---
