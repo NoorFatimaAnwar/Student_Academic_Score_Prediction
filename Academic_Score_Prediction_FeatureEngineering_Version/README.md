@@ -1,117 +1,126 @@
-# 📊 Sales Price Prediction & Analysis
+# 🧠 Project Title: Influence of Lifestyle Factors on Academic Performance
 
-This project predicts **product sales based on advertising budgets** (TV, Radio, Newspaper) using machine learning models.  
-It also provides **feature importance analysis**, **what-if budget scenarios**, and an **interactive prediction tool**.
-
----
-
-## 🚀 Features
-
-- **Baseline Model** – Simple mean-based predictor  
-- **ML Models** – Linear Regression, Ridge Regression, Support Vector Machine (SVM)  
-- **Evaluation** – Metrics (MAE, RMSE, R²) + Actual vs Predicted plots  
-- **Feature Importance** – Using permutation importance  
-- **Scenario Analysis** – Simulate budget changes (e.g., +10% TV, -20% Newspaper)  
-- **Interactive Prediction** – Enter your own ad spend to predict sales  
+## 1. Problem Statement
+Analyze how different lifestyle factors like **sleep, exercise, social media use, and study habits** — influence students’ academic performance and identify which factors have the most significant impact on academic outcomes.
 
 ---
 
-## 🗂️ Project Structure
-├── data/
+## 2. Dataset Overview
+Dataset is same as one which I have used in my previous version.
+**Total Records:** 5,000 students  
+**Columns:** 11  
 
-│ └── Advertising.csv # Dataset
+### Numerical Columns:
+- Age  
+- Study_Hours_Per_Day  
+- Sleep_Hours  
+- Physical_Activity_Hours  
+- Screen_Time_Hours  
+- Social_Activity_Score  
+- Mental_Wellbeing_Score  
+- Attendance_Rate  
+- Academic_Score  
 
-├── src/
-
-│ ├── preprocess.py # Load, split, scale data
-
-│ ├── baseline.py # Baseline model
-
-│ ├── models.py # Train models (LR, Ridge, SVM)
-
-│ ├── evaluation.py # Metrics + plots
-
-│ ├── feature_importance.py # Permutation importance
-
-│ ├── predict.py # Predict sales for user inputs
-
-│ ├── scenario.py # Budget adjustment scenarios
-
-├── notebook/
-
-│ ├── Sales_Prediction.ipynb # Main notebook (analysis + demo)
-  
-└── README.md # Project documentation
+### Categorical Columns:
+- Gender  
+- Stress_Level  
 
 ---
 
-## 📦 Dependencies
+## 3. Data Preprocessing and Cleaning
 
-- pandas  
-- numpy  
-- scikit-learn  
-- matplotlib  
-- ipywidgets (for interactive input in Jupyter Notebook)  
+### ✅ Missing Value Handling
+Applied multiple imputation strategies depending on data type and missing ratio:
+| Column | Missing % | Imputation Technique |
+|---------|------------|----------------------|
+| Study_Hours_Per_Day | ~5% | **Iterative Imputer** |
+| Sleep_Hours | ~6% | **Iterative Imputer** |
+| Physical_Activity_Hours | ~4% | **KNN Imputer** |
+| Social_Activity_Score | ~7% | **Random Sample Imputation** |
+| Stress_Level | >5% | **Mode Imputation** |
 
----
-
-## ▶️ Usage
-
-### 1. Run Jupyter Notebook
-```bash
-jupyter notebook Sales_Prediction.ipynb
-```
-### 2. Predict Sales (Interactive)
-Inside the notebook, enter **TV, Radio, and Newspaper ad spends** → get predicted sales instantly.
-
-### 3. Scenario Analysis
-Test budget changes like:
-- 📺 **+10% TV**  
-- 📰 **-20% Newspaper**  
-- 📻 **+10% Radio**  
-- 📺 **+10% TV** & 📻 **+15% Radio**  
-- 💰 **-10% All spends**  
+### ✅ Categorical Standardization
+- Cleaned inconsistent entries in **Gender** and **Stress_Level**  
+- Converted all text entries to lowercase and replaced variants (e.g., “fmmale” → “female”)  
 
 ---
 
-## 📈 Results
+## 4. Outlier Handling
 
-- **Baseline model** → acts as benchmark  
-- **SVM model** → best performance (lowest RMSE, highest R²)  
-- **TV & Radio** → most important features  
-- **TV + Radio budgets** → biggest improvement in predicted sales  
+To ensure accurate statistical interpretation, multiple methods were applied across numerical variables:
 
----
-
-## 📊 Business Insights & Recommendations
-
-Based on scenario testing with the trained model:
-
-- 📺 **TV advertising has the strongest impact on sales**  
-  +10% TV spend → **+0.53 higher average sales**  
-
-- 📻 **Radio advertising is highly effective**  
-  +10% Radio spend → **+0.44 higher sales**  
-
-- 🔗 **Combining TV and Radio yields the best results**  
-  +10% TV & +15% Radio → **+1.22 higher sales** (synergy effect)  
-
-- 📰 **Newspaper advertising has minimal effect**  
-  –20% Newspaper spend → only **–0.02 change in sales**  
-
-- 💰 **Budget cuts directly reduce sales**  
-  –10% across all channels → **–1.00 drop in sales**  
-
-### ✅ Recommendations for Businesses
-- Invest more in **TV and Radio advertising** (highest returns)  
-- Reduce **Newspaper ad spend**, reallocate to TV/Radio  
-- Use a **combined TV + Radio strategy** for maximum impact  
-- Avoid **across-the-board budget cuts**  
-- Follow a **data-driven marketing approach** with continuous monitoring  
+| Column | Method | Description |
+|---------|---------|-------------|
+| Study_Hours_Per_Day | IQR | Negative values replaced with 0; capped at upper whisker |
+| Sleep_Hours | IQR | Replaced extreme values with median |
+| Physical_Activity_Hours | IQR | Handled outliers beyond 1.5×IQR |
+| Screen_Time_Hours | Z-Score | Outliers beyond ±3σ replaced with median |
+| Social_Activity_Score | Z-Score | Outliers beyond ±3σ replaced with median |
+| Attendance_Rate | IQR | Values below 0 or above 100 corrected |
 
 ---
 
-## 🙌 Author
+## 5. Feature Engineering
 
-**Developed by Noor Fatima**  
-🎓 Final-year Computer Science Student | Data Science Projects  
+### 🧩 Encoding
+- Converted categorical variables into numerical format for modeling:
+  - **Gender:** Encoded using LabelEncoder (`male = 0`, `female = 1`)
+  - **Stress_Level:** Encoded using OrdinalEncoder to preserve category order
+
+### ⚙️ Feature Scaling
+- Applied **StandardScaler** to normalize numerical features (mean = 0, std = 1)  
+- Ensured consistent scale across predictors to improve model stability and regression performance
+
+### 🔍 Data Split
+- Used **train-test split (80-20)** for model preparation and future predictive tasks
+
+---
+
+## 6. Statistical Validation
+Added inferential statistical methods to confirm significance of lifestyle features:
+- **ANOVA Test:** Significant variation in `Academic_Score` across `Gender` and `Stress_Level` (p < 0.05)
+- **F-Test:** Confirmed `Stress_Level` as a significant factor influencing academic performance
+- **Normality Checks:** Most features approximately normal (|skew| < 0.5)
+
+---
+
+## 7. Model Improvement and Accuracy
+- Implemented **Linear Regression** to predict students’ `Academic_Score` based on lifestyle features.  
+- After applying feature engineering techniques — including **missing value imputation**, **outlier correction**, **encoding**, and **standard scaling** — model accuracy improved significantly.  
+
+| Model Version | MAE | MSE | RMSE | R² Score |
+|----------------|-----|-----|------|-----------|
+| Before Feature Engineering | 5.99 | 59.60 | 7.72 | **0.66** |
+| After Feature Engineering | 4.82 | 48.13 | 6.93 | **0.73** |
+
+✅ **Accuracy improved from 0.66 → 0.73**, indicating stronger predictive performance and reduced error after statistical and feature-based refinements.
+
+---
+
+## 8. Key Insights
+- **Study hours** and **attendance rate** have the strongest positive correlation with academic performance.  
+- **Stress Level** significantly impacts scores — lower stress correlates with higher performance.   
+- **Screen time** and **physical activity** have limited direct correlation with scores.  
+- Proper handling of **outliers, missing values, encoding, and scaling** improved data reliability and model accuracy.
+
+---
+
+## 9. Tools and Technologies
+- **Language:** Python  
+- **Libraries:** pandas, numpy, matplotlib, seaborn, scipy, scikit-learn  
+- **Statistical Methods:** ANOVA, F-Test, Z-Score, IQR, Skewness, Kurtosis  
+- **Environment:** Google Colab / Jupyter Notebook  
+
+---
+
+## 10. Conclusion
+This enhanced version integrates **advanced preprocessing and feature engineering techniques** — including multiple imputation, hybrid outlier detection, categorical encoding, and standard scaling — to deliver statistically valid and reliable insights.  
+The refinements not only improved data quality but also **boosted model accuracy from 0.66 to 0.73**, demonstrating the impact of robust preprocessing on predictive analysis.  
+Overall, the study confirms that **study habits**, **attendance**, and **stress management** are the most influential factors driving students’ academic performance.
+
+---
+
+### 👩‍💻 Author
+**Noor Fatima**  
+🎓 *Computer Science Student | 💡 Data Science Enthusiast*  
+📍 *Pakistan*
