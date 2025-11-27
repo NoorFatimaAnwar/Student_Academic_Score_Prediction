@@ -99,12 +99,6 @@ A final bar chart comparing **RMSE** and **R²** for all 7 models.
 
 ---
 
-## 📈 Model Comparison Plot  
-You will generate the RMSE/R² comparison plot using the code provided earlier.  
-This is ideal for GitHub, LinkedIn, or portfolio presentation.
-
----
-
 ## 🔎 Comparison with Previous Version
 
 | Area | Previous Version | Current Version |
@@ -142,3 +136,4 @@ This study highlights:
 📍 Pakistan  
 
 ---
+
