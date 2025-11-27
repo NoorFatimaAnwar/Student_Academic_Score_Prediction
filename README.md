@@ -28,16 +28,18 @@ Academic-Score-Prediction/
 
 ├── Academic_Score_Prediction_FeatureEngineering_Version/
 
-│ ├── Feature_Engineering_and_Preprocessing.ipynb
+│ ├── Academic_Score_FeatureEngineering_Improvements.ipynb
 
 │ └── README.md
 
 │
-├── Academic_Score_Prediction_ML_Version/
+├── Academic_Score_Prediction_Statistical_Version/
 
-│ ├── Academic_Score_Prediction_ML.ipynb
+│ ├── Academic _Score_Statists.ipynb
 
 │ └── README.md
+
+|
 
 ├── Academic_Score_Prediction_ML_Version/
 
