@@ -18,9 +18,11 @@ This structure allows learners, researchers, and recruiters to easily understand
 
 Academic-Score-Prediction/
 
-├── Academic_Score_Prediction_Statistical_Version/
+├── Students_Academic_Score_Analysis/
 
-│ ├── Student_Academic_Statistical_Analysis.ipynb
+│ ├── Academic _Score_EDA.ipynb
+
+│ ├── students_lifestyle_5000.csv #dataset
 
 │ └── README.md
 
@@ -33,6 +35,7 @@ Academic-Score-Prediction/
 │ └── README.md
 
 │
+
 ├── Academic_Score_Prediction_Statistical_Version/
 
 │ ├── Academic _Score_Statists.ipynb
@@ -43,7 +46,7 @@ Academic-Score-Prediction/
 
 ├── Academic_Score_Prediction_ML_Version/
 
-│ ├── Academic_Score_Prediction_ML.ipynb
+│ ├── Academic_Score_ML_Comparison.ipynb
 
 │ └── README.md
 
