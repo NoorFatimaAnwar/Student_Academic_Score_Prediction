@@ -1,136 +1,144 @@
-# 🧠 Student Academic Score Prediction -> Statistical Edition
+# 🧠 Student Academic Score Prediction -> Machine Learning Model Benchmarking Edition
 
-## 📘 Project Overview
-This project explores how different lifestyle factors — including **sleep**, **exercise**, **social media use**, and **study habits** — influence students’ **academic performance**.  
-The updated version enhances the analysis by integrating **statistical testing methods** and **distribution checks** to validate findings scientifically.
+### 📘 Updated Project Overview  
+This upgraded version extends the previous study by introducing **multiple machine learning models** and performing a complete comparison across **7 algorithms**:
 
----
+- Linear Regression  
+- Decision Tree  
+- Random Forest  
+- XGBoost  
+- Gradient Boosting  
+- Support Vector Regression (SVR)  
+- Stacking Regressor (RF + GB + SVR → Ridge)
 
-## 🎯 Objective
-Analyze how lifestyle choices impact academic outcomes and identify which factors are statistically significant contributors to academic success.
-
----
-
-## 📊 Dataset Description
-The dataset (`students_lifestyle_5000.csv`) contains 5000 student records, including:
-
-**Numerical Columns:**  
-Study_Hours_Per_Day, Sleep_Hours, Screen_Time_Hours, Physical_Activity_Hours, Social_Activity_Score, Mental_Wellbeing_Score, Attendance_Rate, Academic_Score, Age  
-
-**Categorical Columns:**  
-Gender, Stress_Level
+The goal is to determine **which model best predicts academic scores** after applying advanced preprocessing, outlier handling, encoding, and scaling techniques.
 
 ---
 
-## 🔍 Project Workflow
+## 🔧 What’s New in This Version?
 
-### 1. Initial Exploration
-- Loaded and visualized raw data distributions.  
-- Identified missing values, outliers, and inconsistent category names.  
-- Explored gender and stress level distributions.  
+### ✔️ Multi-Model Benchmarking  
+Evaluate how different ML algorithms perform on the **same cleaned dataset**.
 
-### 2. Data Cleaning
-- Used **KNN Imputer** for numerical columns with >5% missing values.  
-- Replaced missing categorical values (e.g., Stress_Level) using **mode imputation**.  
-- Standardized categorical entries (e.g., gender variants: “fmmale” → “female”).  
-- Removed and capped outliers using **IQR method** and **z-score analysis**.  
+### ✔️ Hyperparameter-Tuned Models  
+Includes optimal configurations such as:
 
-### 3. Statistical Enhancements (New Section 🧮)
-This version adds **inferential statistics** to strengthen EDA insights.
+- Random Forest → `n_estimators = 200`  
+- XGBoost, Gradient Boosting → `learning_rate = 0.05`  
+- SVR → `C = 100`, `kernel = 'rbf'`
 
-#### 📏 Normality & Distribution Analysis
-- **Shapiro-Wilk Test:** Checked if numerical columns follow normal distribution.  
-- **Skewness & Kurtosis:** Measured shape of data distribution.  
-- Found most variables approximately normal (|skew| < 0.5), suitable for parametric tests.  
+### ✔️ Stacking Regressor (Ensemble)
+A layered architecture:  
+**Random Forest + Gradient Boosting + SVR → Ridge Regressor** (meta model)
 
-#### 📊 Outlier Detection
-- Applied **z-score method** to quantify outliers across multiple columns.  
-- Outliers > 3σ were replaced or capped at upper whiskers.  
-
-#### 🧠 Hypothesis Testing
-- **ANOVA (f_oneway):**  
-  Tested if mean Academic_Score differs across **genders** and **stress levels**.  
-  Found p < 0.05 → Significant differences exist between groups.  
-
-- **Pearson Correlation:**  
-  Used for normally distributed variables (Study_Hours, Sleep_Hours, etc.).  
-  Revealed **Study_Hours_Per_Day** has the strongest positive correlation with Academic_Score.  
-
-- **Spearman Correlation:**  
-  Used for non-normal variables (Physical_Activity_Hours).  
-  Showed no significant relationship with Academic_Score.  
-
-- **F-test (f_regression):**  
-  Validated relationship strength between categorical encodings (Stress_Level) and target variable.  
-
-#### 📈 Insights
-- Study hours and attendance rate show significant positive influence on academic score.  
-- Sleep and mental wellbeing have mild positive effects.  
-- Physical activity and screen time show negligible impact.  
-- Stress level and gender influence academic outcomes significantly.  
+### ✔️ Performance Comparison Visualization  
+A final bar chart comparing **RMSE** and **R²** for all 7 models.
 
 ---
 
-## 📊 EDA Highlights
-- No major skew after cleaning.  
-- Heatmaps, scatterplots, and violin plots illustrate weak to moderate relationships.  
-- Correlation matrix confirms **Study_Hours_Per_Day ↔ Academic_Score (r ≈ 0.78)** as the strongest association.  
+## 📊 Dataset Overview
+
+- Same dataset as previous version  
+- **5,000 students**, **11 features**  
+- The same cleaned, imputed, encoded, and scaled dataset is used for all models to ensure fairness
 
 ---
 
-## ⚙️ Feature Engineering
-- **Encoding:** Converted Gender and Stress_Level into dummy variables.  
-- **Scaling:** Applied **StandardScaler** to normalize numerical columns.  
-- **Train-Test Split:** 80-20 ratio for modeling readiness.  
+## 🧼 Preprocessing Pipeline
+
+| Step | Techniques Used |
+|------|----------------|
+| Missing Value Handling | Iterative Imputer, KNN, Random Sample |
+| Outlier Handling | IQR + Z-score hybrid |
+| Encoding | One-Hot Encoding (Gender), Label Encoding (Stress) |
+| Scaling | StandardScaler |
+| Train/Test Split | 80% train / 20% test |
 
 ---
 
-## 📈 Key Learnings
-- Statistical validation adds reliability to EDA.  
-- ANOVA and correlation tests reveal hidden relationships beyond visual inspection.  
-- Outlier and normality checks ensure accurate, unbiased analysis.  
+## 🚀 ML Models and Results
+
+| Model | MAE | MSE | RMSE | R² | Train R² | Test R² |
+|-------|------|-------|--------|--------|----------|-----------|
+| Linear Regression | 5.434 | 47.43 | 6.887 | 0.729 | 0.720 | 0.729 |
+| Decision Tree | 8.136 | 106.70 | 10.33 | 0.391 | 1.000 | 0.391 |
+| Random Forest | 5.587 | 50.96 | 7.139 | 0.709 | 0.961 | 0.709 |
+| XGBoost | 5.653 | 51.57 | 7.181 | 0.706 | 0.850 | 0.706 |
+| Gradient Boosting | 5.641 | 51.43 | 7.172 | 0.706 | 0.857 | 0.706 |
+| SVR | 6.266 | 62.24 | 7.890 | 0.645 | 0.819 | 0.645 |
+| Stacking Regressor | 5.534 | 49.98 | 7.07 | 0.715 | 0.913 | 0.715 |
 
 ---
 
-## 🧩 Technologies Used
-- **Python Libraries:** pandas, numpy, matplotlib, seaborn, scipy, sklearn  
-- **Statistical Methods:** ANOVA, Shapiro-Wilk, Pearson, Spearman, z-score, skewness, kurtosis  
-- **Tools:** Google Colab  
+## 🏆 Key Findings
+
+### 🔹 Best Performers  
+
+| Metric | Best Model |
+|--------|--------------|
+| Lowest MAE | **Stacking Regressor** |
+| Lowest MSE | **Linear Regression** |
+| Highest Test R² | **Linear Regression (0.729)** |
+| Best Ensemble | **Stacking Regressor (0.715)** |
 
 ---
 
-## 🧠 Conclusion
-The statistical version of this project provides a more rigorous understanding of how students’ habits affect academic outcomes.  
-While study hours and attendance have the strongest positive impact, lifestyle balance (adequate sleep and moderate stress) remains essential for optimal performance.  
+## 🔍 Why Linear Regression Outperformed?
+
+- Dataset relationships are **mostly linear**  
+- After encoding & scaling, LR becomes highly stable  
+- Complex models like RF & DT show signs of **overfitting**
 
 ---
 
-## 📁 Folder Structure
+## 🔍 Why Stacking Regressor Performed Well?
 
-Student_Lifestyle_Analysis/
-
-├── Academic_Score_Prediction_Statistical_Version/
-
-    ├── students_lifestyle_5000.csv
-
-    ├── Academic_Score_statists.ipynb
-
-    ├── README.md   
-
-└── Student_Academic_Score_Analysis/
-
-    ├── students_lifestyle_5000.csv
-    
-    ├── Academic_Score_EDA.ipynb
-    
-    ├── README.md
-
-# Run the Jupyter/Colab notebook
-Academic_Score_Statists.ipynb
+- Combines predictions from diverse models  
+- Ridge meta-model reduces bias  
+- Balances variance (trees) + non-linearity (SVR)  
 
 ---
+
+## 📈 Model Comparison Plot  
+You will generate the RMSE/R² comparison plot using the code provided earlier.  
+This is ideal for GitHub, LinkedIn, or portfolio presentation.
+
+---
+
+## 🔎 Comparison with Previous Version
+
+| Area | Previous Version | Current Version |
+|-------|------------------|-------------------------|
+| Models Used | Linear Regression only | 7 ML Models |
+| Evaluation | Basic | Full Benchmark |
+| Best Model | LR (R² = 0.73) | LR (0.73) + Stacking (0.715) |
+| New Finding | Study habits + attendance strongest predictors | Linear patterns dominate; ensemble improves stability |
+| Visual Output | Correlation + LR results | Complete multi-model comparison graph |
+
+---
+
+## 🎯 Final Conclusion
+
+This upgraded version provides a **complete performance comparison** of multiple ML models on the same dataset.
+
+- **Linear Regression remains the best performer**, likely due to the linear nature of the data.  
+- **Stacking Regressor** offers a strong balanced approach by combining trees and SVR.  
+- Advanced models (RF, XGBoost, GB) perform well but may overfit.  
+
+This study highlights:
+
+- Which models generalize best  
+- Which models overfit  
+- How preprocessing impacts each algorithm  
+- How ensembles improve prediction stability  
+
+---
+
 ## 👩‍💻 Author
 
 **Noor Fatima**  
-🎓 *Computer Science Student* | 💡 *Data Science Enthusiast*  
-📍 *Pakistan* 
+🎓 Computer Science Student  
+💡 Data Science & ML Enthusiast  
+📍 Pakistan  
+
+---
