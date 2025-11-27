@@ -3,7 +3,7 @@
 
 Welcome! 👋  
 This repository contains **multiple versions** of a complete end-to-end project on **Student Academic Score Prediction**.  
-Each version represents a different stage of the project — from basic statistical exploration to advanced machine learning and ensemble modeling.
+Each version represents a different stage of the project from basic statistical exploration to advanced machine learning and ensemble modeling.
 
 This structure allows learners, researchers, and recruiters to easily understand how the project evolved across:
 
@@ -17,21 +17,37 @@ This structure allows learners, researchers, and recruiters to easily understand
 ## 📁 Repository Structure
 
 Academic-Score-Prediction/
-│
+
 ├── Academic_Score_Prediction_Statistical_Version/
+
 │ ├── Student_Academic_Statistical_Analysis.ipynb
+
 │ └── README.md
+
 │
+
 ├── Academic_Score_Prediction_FeatureEngineering_Version/
+
 │ ├── Feature_Engineering_and_Preprocessing.ipynb
+
 │ └── README.md
+
 │
 ├── Academic_Score_Prediction_ML_Version/
+
 │ ├── Academic_Score_Prediction_ML.ipynb
+
 │ └── README.md
-│
-└── Students_Academic_Score_Analysis/
-└── (visualizations and exploration files)
+
+├── Academic_Score_Prediction_ML_Version/
+
+│ ├── Academic_Score_Prediction_ML.ipynb
+
+│ └── README.md
+
+└── README.md
+
+
 
 
 Each folder includes:
@@ -101,6 +117,45 @@ Outputs include:
 - Full documented analysis  
 
 ---
+## 🧩 Dataset Details
+
+**File name:** `students_lifestyle_5000.csv`  
+**Source:** Generated using ChatGPT for educational and analytical purposes
+
+### Overview
+
+| Property | Details |
+|-----------|----------|
+| **Rows** | 5,000 |
+| **Columns** | Mixed numerical and categorical variables |
+| **Imperfections** | Missing values (~6%), typos, inconsistent labels, outliers, invalid values, duplicates |
+
+**Intentional Data Imperfections:**
+- Missing values (~6% across several columns)
+- Typos and inconsistent categorical labels (e.g., `femmale`, `fmale`)
+- Lowercase/variant entries in `Stress_Level`
+- Duplicate `Student_ID`s
+- Outliers in study/sleep/screen time
+- Invalid values (e.g., attendance > 100%)
+
+### Column Descriptions
+
+| Column Name | Type | Description |
+|--------------|------|-------------|
+| Age | Numeric | Age of the student |
+| Gender | Categorical | Student gender |
+| Study_Hours_Per_Day | Numeric | Average hours spent studying daily |
+| Sleep_Hours | Numeric | Average sleep hours per day |
+| Physical_Activity_Hours | Numeric | Daily exercise hours |
+| Screen_Time_Hours | Numeric | Daily screen/social media time |
+| Social_Activity_Score | Numeric | Social interaction frequency score |
+| Mental_Wellbeing_Score | Numeric | Overall mental wellness score |
+| Attendance_Rate | Numeric | Class attendance percentage |
+| Stress_Level | Categorical | Low / Medium / High |
+| Academic_Score | Numeric | Final academic performance score |
+
+---
+
 
 ## ▶️ How to Run the Project
 
